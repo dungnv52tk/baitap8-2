@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+    let Apple = function () {
+        this.setPiece = function (piece) {
+            this.piece = piece;
+        }
+        this.getPiece = function () {
+            return this.piece;
+        }
+        this.decreasePiece = function () {
+            if (this.piece > 0) {
+                return this.piece--;
+            } else {
+                return this.piece = 0;
+            }
+        }
+    }
+
+    let Human = function (name, sex, say, weight) {
+        this.name = name;
+        this.sex = sex;
+        this.say = say;
+        this.weight = weight;
+        this.getWeight = function () {
+            return this.weight;
+        }
+        this.setApple = function (apple) {
+            return this.apple = apple;
+        }
+        this.getAppleInfo = function () {
+            return this.apple.getPiece();
+        }
+        this.biteApple = function () {
+            if (this.status) {
+                this.weight++;
+                document.write(this.name + "&nbsp" + this.say + "<br/>")
+            }
+        }
+        this.afterBiting = function () {
+            this.status = true;
+            return this.apple.decreasePiece();
+        }
+    }
+
+    let adam = new Human('Adam', 'male', 'say "my turn"', 70);
+    let eva = new Human('Eva', 'female', 'say "give me"', 60);
+    let apple = new Apple();
+    apple.setPiece(10);
+    adam.setApple(apple);
+    eva.setApple(apple);
+
+    for (let i = 0; i < 5; i++) {
+        eva.biteApple();
+        eva.afterBiting();
+        document.write("Weight of Eva is" + eva.getWeight() + "." + "The remain apple is " + eva.getAppleInfo() + "<br/>");
+        adam.biteApple();
+        adam.afterBiting();
+        document.write("Weight of Adam is" + adam.getWeight() + "." + "The remain apple is " + adam.getAppleInfo() + "<br/>");
+    }
+
+  document.write("The apple is exhausted");
+
+</script>
+</body>
+</html>
